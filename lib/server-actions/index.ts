@@ -1,14 +1,23 @@
 "use server";
 
-import { PrismaClient } from "@prisma/client";
+import { createClient } from "@supabase/supabase-js";
 
-const prisma = new PrismaClient();
+const supabase = createClient(
+  "https://vuvjackxzpmndmoapvgb.supabase.co",
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZ1dmphY2t4enBtbmRtb2FwdmdiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjMyMjU1NDgsImV4cCI6MjAzODgwMTU0OH0.J5Hfe3eXLTYpzNvETmTTbQ93P81_irxG21fa5tWoUJI"
+);
 
 export const postSubmission = async (data: any) => {
-  await prisma.formSubmission.create({ data: data });
+  console.log(data);
+  const res = await supabase.from("formSumbission").insert(data);
+
+  console.log(res);
 };
 
 export const getSubmissions = async () => {
-  const submissions = await prisma.formSubmission.findMany();
-  return submissions;
+  const { data, error } = await supabase.from("formSumbission").select("*");
+
+  if (error) console.error("Error fetching data:", error);
+
+  return data;
 };

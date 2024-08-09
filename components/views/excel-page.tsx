@@ -29,7 +29,7 @@ export const ExcelPage = ({ data }: { data: any }) => {
           item.birthDate,
           item.isNotRegistered,
           item.purpose === "partner" ? "Партнер" : "Для себя",
-          item.createdAt.toLocaleString("ru-RU", {
+          item.created_at.toLocaleString("ru-RU", {
             year: "numeric",
             month: "long",
             day: "numeric",
@@ -40,7 +40,7 @@ export const ExcelPage = ({ data }: { data: any }) => {
       );
 
     for (let index = 0; index <= 8; index++) {
-      sheet.setColumnWidth(index, 150);
+      sheet.setColumnWidth(index, 200);
     }
 
     file.addSheet(sheet).download();
