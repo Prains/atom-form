@@ -7,7 +7,7 @@ import { Input } from "../ui/input";
 import { Checkbox } from "../ui/checkbox";
 import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
 import { Button } from "../ui/button";
-import { postSubmission } from "@/lib/server-actions";
+import { postSubmission, sendTelegramMessage } from "@/lib/server-actions";
 import { useRouter } from "next/navigation";
 
 const formSchema = z.object({
@@ -37,6 +37,7 @@ export const FormPage = () => {
 
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
     await postSubmission(data);
+    await sendTelegramMessage("Заполнена новая анкета в ATOMY");
     router.push("/success");
   };
 
