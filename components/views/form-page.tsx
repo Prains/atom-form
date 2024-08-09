@@ -118,7 +118,7 @@ export const FormPage = () => {
                   <Checkbox checked={field.value} onCheckedChange={field.onChange} />
                 </FormControl>
                 <div className="space-y-1 leading-none">
-                  <FormLabel>Я не зарегистрирован в компании атоми</FormLabel>
+                  <FormLabel>Я не зарегистрирован в компании ATOMY</FormLabel>
                 </div>
                 <FormMessage />
               </FormItem>
