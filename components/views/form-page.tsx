@@ -16,7 +16,6 @@ const formSchema = z.object({
   email: z.string().email("Введите корректный email"),
   address: z.string().min(2, "Адрес должен содержать минимум 2 символа"),
   birthDate: z.string().min(10, "Введите корректную дату рождения"),
-  isNotRegistered: z.boolean(),
   purpose: z.enum(["self", "partner"]),
 });
 
@@ -30,7 +29,6 @@ export const FormPage = () => {
       email: "",
       address: "",
       birthDate: "",
-      isNotRegistered: false,
       purpose: "self",
     },
   });
@@ -106,21 +104,6 @@ export const FormPage = () => {
                 <FormControl>
                   <Input {...field} type="email" />
                 </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="isNotRegistered"
-            render={({ field }) => (
-              <FormItem className="flex flex-row items-start space-x-3 space-y-0">
-                <FormControl>
-                  <Checkbox checked={field.value} onCheckedChange={field.onChange} />
-                </FormControl>
-                <div className="space-y-1 leading-none">
-                  <FormLabel>Я не зарегистрирован в компании ATOMY</FormLabel>
-                </div>
                 <FormMessage />
               </FormItem>
             )}

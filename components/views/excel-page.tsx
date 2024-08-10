@@ -4,22 +4,11 @@ import { SheetBuilder, FileBuilder } from "excel-build";
 import { Button } from "../ui/button";
 
 export const ExcelPage = ({ data }: { data: any }) => {
-  console.log(data);
-
   const downloadFile = () => {
     const file = new FileBuilder("Заполненные анкеты");
 
     const sheet = new SheetBuilder("Страница 1")
-      .appendThead([
-        "ФИО",
-        "Телефон",
-        "Почта",
-        "Адрес",
-        "Дата рождения",
-        "Зарегистрирован в компании",
-        "Цель",
-        "Дата заполнения",
-      ])
+      .appendThead(["ФИО", "Телефон", "Почта", "Адрес", "Дата рождения", "Цель", "Дата заполнения"])
       .appendTbody(
         data.map((item: any) => [
           item.name,
@@ -27,7 +16,6 @@ export const ExcelPage = ({ data }: { data: any }) => {
           item.email,
           item.address,
           item.birthDate,
-          item.isNotRegistered,
           item.purpose === "partner" ? "Партнер" : "Для себя",
           item.created_at.toLocaleString("ru-RU", {
             year: "numeric",
